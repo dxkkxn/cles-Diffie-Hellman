@@ -2,28 +2,50 @@
 #include <stdio.h>
 #include <assert.h>
 
+
+
 int main(){
-  mpz_t n, m, res, q;
-  mpz_inits(res, q, NULL);
-  mpz_init_set_ui(n,1);
-  mpz_init_set_ui(m,7);
-  mpz_and(res,n,m);
-  gmp_printf ("n = %Zd\n\n", n);
-  // mpz_out_str(stdout, m, 10);
-  gmp_printf ("m = %Zd\n\n", m);
-  // printf("n&m = ");
-  // mpz_out_str(stdout, res, 10);
-  gmp_printf ("res = %Zd\n\n", res);
-  printf("comp = %d\n", mpz_cmp(res,n));
-  if (mpz_cmp(res,n) == 0)
-    printf("OK\n");
-  while (mpz_cmp_d(m,0))
-  {
-    mpz_fdiv_q_ui(m,m,2);
-    gmp_printf ("m = %Zd\n", m);
-  }
-  mpz_clears(n,m,res, NULL);
+  mpz_t number;
+  mpz_init_set_ui(number, 7);
+  gmp_printf("number = %Zd\n", number);
+  mpz_setbit(number, 4);
+  gmp_printf("number = %Zd\n", number);
+  mpz_clrbit(number, 0);
+  gmp_printf("number = %Zd\n", number);
 }
+
+
+
+
+
+
+
+
+
+
+
+// int main(){
+//   mpz_t n, m, res, q;
+//   mpz_inits(res, q, NULL);
+//   mpz_init_set_ui(n,1);
+//   mpz_init_set_ui(m,7);
+//   mpz_and(res,n,m);
+//   gmp_printf ("n = %Zd\n\n", n);
+//   // mpz_out_str(stdout, m, 10);
+//   gmp_printf ("m = %Zd\n\n", m);
+//   // printf("n&m = ");
+//   // mpz_out_str(stdout, res, 10);
+//   gmp_printf ("res = %Zd\n\n", res);
+//   printf("comp = %d\n", mpz_cmp(res,n));
+//   if (mpz_cmp(res,n) == 0)
+//     printf("OK\n");
+//   while (mpz_cmp_d(m,0))
+//   {
+//     mpz_fdiv_q_ui(m,m,2);
+//     gmp_printf ("m = %Zd\n", m);
+//   }
+//   mpz_clears(n,m,res, NULL);
+// }
 
 // int main(){
 //

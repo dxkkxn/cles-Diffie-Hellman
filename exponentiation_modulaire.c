@@ -3,7 +3,7 @@
 #include <math.h>
 #include <gmp.h>
 
-void exp_mod(mpz_t result, mpz_t base, mpz_t exp, mpz_t mod)
+void exp_mod(mpz_t result, const mpz_t base, const mpz_t exp, const mpz_t mod)
 {
   // mpz_init(result);
   // mpz_set_ui(result,1)
