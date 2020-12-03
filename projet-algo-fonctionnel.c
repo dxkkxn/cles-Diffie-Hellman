@@ -113,7 +113,7 @@ void echange_des_cles(int m, const mpz_t p, const mpz_t g)
     gmp_printf("%d = %Zd\n", j+1, tab[j]);
     mpz_clear(tab[j]);
   }
-  free(tab);
+  // free(tab);
 }
 
 
