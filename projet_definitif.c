@@ -32,8 +32,8 @@ void exp_mod(mpz_t result, const mpz_t base, const mpz_t exp, const mpz_t mod)
 void generation_of_p_and_g(mpz_t p, mpz_t g, int n)
 {
   unsigned long seed;
-  mpz_t p_moins2;
-  mpz_init(p_moins2);
+  mpz_t p_moins1;
+  mpz_init(p_moins1);
   gmp_randstate_t r;
   seed = time(NULL);
   gmp_randinit_default(r);
@@ -50,12 +50,12 @@ void generation_of_p_and_g(mpz_t p, mpz_t g, int n)
 
   //Calcul de generateur (g) != (0, 1, p-1)
 
-  mpz_sub_ui(p_moins2, p, 2);       //p - 2
+  mpz_sub_ui(p_moins1, p, 1);       //p - 1
   do{
     //nombre aleatoire pris dans l'intervalle [0,p-2]
-    mpz_urandomm(g, r, p_moins2);
+    mpz_urandomm(g, r, p_moins1);
   }while(mpz_cmp_d(g, 0) == 0 || mpz_cmp_d(g, 1) == 0);
-  mpz_clear(p_moins2);
+  mpz_clear(p_moins1);
 }
 
 
@@ -135,8 +135,8 @@ int main(){
   printf("Saisissez les nombre d'entites impliquees : ");
   scanf(" %d", &m);
   generation_of_p_and_g(p, g, n);
-  gmp_printf("\nLes paramètres public sont le générateur g = %Zd et le grope Zp/Z, p = %Zd\n",
-              p,g);
+  gmp_printf("\nLes paramètres public sont le générateur g = %Zd et le groupe Zp/Z, p = %Zd\n",
+              g,p);
   printf("\n=====================================================\n");
   key_exchange(m, p, g);
   mpz_clears(p, g, NULL);
