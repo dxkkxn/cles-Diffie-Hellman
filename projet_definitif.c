@@ -98,7 +98,7 @@ void key_exchange(int m, const mpz_t p, const mpz_t g)
   {
     int j = i;
     mpz_set(result, g);
-    printf("        LA ENTITE %d OBTIENT LA CLÉ COMMUNE", (m-1+i)%m + 1);
+    printf("|        L'ENTITE %d OBTIENT LA CLÉ COMMUNE          |", (m-1+i)%m + 1);
     printf("\n=====================================================\n");
     for (int k = 0; k < m-1; k++)
     {
@@ -111,7 +111,7 @@ void key_exchange(int m, const mpz_t p, const mpz_t g)
     }
     mpz_set(result_pre, result);
     exp_mod(result, result, tab[j], p);
-    gmp_printf("Entite %d effectue %Zd^%Zd et obtient la clé commune %Zd\n",
+    gmp_printf("Entité %d effectue %Zd^%Zd et obtient la clé commune %Zd\n",
                 j%m + 1, result_pre, tab[j], result );
     printf("\n=====================================================\n");
   }
@@ -120,7 +120,7 @@ void key_exchange(int m, const mpz_t p, const mpz_t g)
 
   for (int j = 0; j < m ; j++)
   {
-    gmp_printf("La clé privé de l'entité %d = %Zd\n", j+1, tab[j]);
+    gmp_printf("La clé privée de l'entité %d = %Zd\n", j+1, tab[j]);
   }
   printf("=====================================================\n");
 }
@@ -130,12 +130,15 @@ int main(){
   mpz_t p, g;
   mpz_inits(p, g, NULL);
   int n, m;
+  printf("=====================================================\n");
+  printf("|          ECHANGE DES CLES DIFFIE-HELLMAN          |");
+  printf("\n=====================================================\n\n");
   printf("Saisissez la taille (en bits) du secret : ");
   scanf(" %d", &n);
-  printf("Saisissez les nombre d'entites impliquees : ");
+  printf("Saisissez le nombre d'entités impliquées : ");
   scanf(" %d", &m);
   generation_of_p_and_g(p, g, n);
-  gmp_printf("\nLes paramètres public sont le générateur g = %Zd et le groupe Zp/Z, p = %Zd\n",
+  gmp_printf("\nLes paramètres publics sont le générateur g = %Zd et le groupe Zp/Z, p = %Zd\n",
               g,p);
   printf("\n=====================================================\n");
   key_exchange(m, p, g);
